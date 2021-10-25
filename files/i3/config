@@ -1,0 +1,91 @@
+{% if model == "virtualbox" %}
+# alt
+set $mod Mod1
+{% else %}
+# windows key
+set $mod Mod4
+{% endif %}
+
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id flameshot
+exec_always --no-startup-id udiskie
+exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/i3/i3autoname
+exec_always --no-startup-id setbg
+
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 5
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id volume down
+bindsym XF86AudioMute exec --no-startup-id volume mute
+
+bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show window
+bindsym $mod+c exec rofi -show calc -no-show-match -no-sort
+bindsym $mod+e exec rofi -show emoji
+
+bindsym $mod+Return exec alacritty
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+x floating toggle
+bindsym $mod+a focus mode_toggle
+bindsym $mod+m move workspace to output right
+bindsym $mod+Shift+s sticky toggle
+
+floating_modifier $mod
+
+bindsym $window+n exec i3-input -F 'rename workspace to "%s"' -P 'New Name: '
+
+{% for (direction, vim) in [("up", "k"), ("down", "j"), ("left", "h"), ("right", "l")] %}
+bindsym $mod+{{ vim }} focus {{ direction }}
+bindsym $mod+{{ direction|capitalize }} focus {{ direction }}
+bindsym $mod+Shift+{{ vim }} move {{ direction }}
+bindsym $mod+Shift+{{ direction|capitalize }} move {{ direction }}
+{% endfor %}
+
+{% for i in range(1, 11) %}
+bindsym $mod+{{ i % 10 }} workspace number {{ i }}
+bindsym $mod+Shift+{{ i % 10 }} move container to workspace number {{ i }}
+{% endfor %}
+
+mode resize {
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+
+  bindsym Escape mode default
+  bindsym Return mode default
+}
+bindsym $mod+r mode resize
+
+set $lock /usr/bin/i3lock-fancy
+set $system "Reload i3 (c)onfig, System (l)ock, (e)xit i3, (s)leep, (h)ibernate, (r)eboot, (S)hutdown"
+mode $system {
+  bindsym c restart; mode default
+  bindsym l exec --no-startup-id $lock; mode default
+  bindsym e exit; mode default
+  bindsym s exec --no-startup-id "$lock && systemctl suspend"; mode default
+  bindsym h exec --no-startup-id "$lock && systemctl hibernate"; mode default
+  bindsym r exec systemctl reboot; mode default
+  bindsym Shift+s exec systemctl poweroff; mode default
+
+  bindsym Escape mode default
+  bindsym Return mode default
+}
+bindsym $mod+Escape mode $system
+
+# disable titles for i3-gaps to work properly
+for_window [class=".*"] border pixel 0
+
+font pango: {{ theme_font }} 11
+gaps inner 10
+gaps outer 0
+
+{% include theme_dir + "i3" %}

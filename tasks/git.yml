@@ -1,0 +1,21 @@
+- name: Copy gitignore
+  copy:
+    src: files/gitignore
+    dest: "/home/{{ username }}/.gitignore"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy system gitconfig
+  copy:
+    src: files/system-gitconfig
+    dest: /etc/gitconfig
+    mode: 0644
+
+- name: Copy gitconfig
+  template:
+    src: files/gitconfig
+    dest: "/home/{{ username }}/.gitconfig"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

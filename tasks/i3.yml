@@ -1,0 +1,115 @@
+- name: Install window manager and extras
+  pacman:
+    packages:
+    - i3-gaps
+    - autorandr
+    - xautolock
+    - noto-fonts
+    - lxappearance
+    - feh
+
+- name: Install window manager extras (AUR)
+  aur:
+    packages:
+    - light-git
+    - polybar
+    - i3lock-fancy-git
+  become: makepkg
+
+- name: Install autolock service
+  template:
+    src: files/autolock.service
+    dest: /etc/systemd/system/autolock.service
+
+- name: Enable autolock service
+  service:
+    service: autolock
+    started: yes
+    enabled: yes
+
+- name: Copy wallpaper
+  copy:
+    src: "{{ theme_dir }}/wallpaper.jpg"
+    dest: "/home/{{ username }}/.local/share/bg"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Create i3 config directory
+  directory:
+    path: "/home/{{ username }}/.config/i3"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+
+- name: Configure i3
+  template:
+    src: files/i3/config
+    dest: "/home/{{ username }}/.config/i3/config"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Install i3autoname
+  copy:
+    src: files/i3/i3autoname
+    dest: "/home/{{ username }}/.config/i3/i3autoname"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: Install i3-autoname fonts library
+  copy:
+    src: files/i3/i3autoname_icons.py
+    dest: "/home/{{ username }}/.config/i3/i3autoname_icons.py"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Install i3-autoname dependencies
+  pacman:
+    packages: python-i3ipc
+
+- name: Create polybar config directory
+  directory:
+    path: "/home/{{ username }}/.config/polybar"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+
+- name: Copy polybar config
+  template:
+    src: files/polybar/config
+    dest: "/home/{{ username }}/.config/polybar/config"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy polybar launcher
+  copy:
+    src: files/polybar/launch.sh
+    dest: "/home/{{ username }}/.config/polybar/launch.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: Create autorandr config directory
+  directory:
+    path: "/home/{{ username }}/.config/autorandr"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+
+- name: Configure autorandr postswitch script
+  copy:
+    src: files/autorandr/postswitch
+    dest: "/home/{{ username }}/.config/autorandr/postswitch"
+    owner: "{{ username }}"
+    group: "{{ username}}"
+    mode: 0755
+
+- name: Copy background script
+  copy:
+    src: files/setbg
+    dest: /usr/local/bin/setbg
+    mode: 0755

@@ -1,0 +1,13 @@
+- name: Install node.js, NPM, and yarn
+  pacman:
+    packages:
+    - nodejs
+    - npm
+    - yarn
+
+- name: Install nodejs-live-server and create-react-app
+  aur:
+    packages:
+    - nodejs-live-server
+    - create-react-app
+  become: makepkg

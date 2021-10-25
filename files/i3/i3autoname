@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+
+# modified from https://github.com/cboddy/i3-workspace-names-daemon
+
+import json
+import os
+import re
+
+import i3ipc
+
+from i3autoname_icons import icons
+
+SUBSCRIPTIONS = ["window::move", "window::new", "window::title", "window::close"]
+ATTRIBUTES = ["name", "window_title", "window_instance", "window_class"]
+DEFAULT_ICON = icons["question"]
+
+
+def _load_icon_map():
+    mapping_file = os.getenv("I3_AUTORENAME_ICON_FILE")
+    if mapping_file:
+        with open(mapping_file) as f:
+            return json.load(f)
+
+    return {
+        "google-chrome": "chrome",
+        "firefox": "firefox",
+        "alacritty": "terminal",
+        "thunar": "folder-open",
+        "subl": "edit",
+        "slack": "slack",
+        "spotify": "spotify",
+        "kmymoney": "money-bill",
+        "virtualbox": "desktop",
+        "zoom": "video",
+    }
+
+
+_icon_map = _load_icon_map()
+
+
+def _rename(workspace_names):
+    commands = [f'rename workspace "{old}" to "{new}"' for old, new in mappings.items() if old != new]
+    return "; ".join(commands)
+
+
+def _get_icon(leaf):
+    for attribute in ATTRIBUTES:
+        value = getattr(leaf, attribute, None)
+        if not value:
+            continue
+
+        for regex, icon_name in _icon_map.items():
+            if re.match(regex, value, re.IGNORECASE):
+                return icons[icon_name]
+
+    return DEFAULT_ICON
+
+
+def _deduplicate(iterable):
+    seen = set()
+    return [x for x in iterable if x not in seen and not seen.add(x)]
+
+
+def renamer(i3):
+    def rename(i3, _event=None):
+        commands = []
+        for workspace in i3.get_tree().workspaces():
+            old_name = workspace.name.replace('"', '\\"')
+
+            names = _deduplicate(_get_icon(leaf) for leaf in workspace.leaves())
+            joined = "|".join(names).replace('"', '\\"')
+            if workspace.num == -1 and not joined:
+                new_name = icons["times-circle"]
+            elif workspace.num == -1:
+                new_name = joined
+            elif not joined:
+                new_name = workspace.num
+            else:
+                new_name = f"{workspace.num}: {joined}"
+
+            if old_name != new_name:
+                commands.append(f'rename workspace "{old_name}" to "{new_name}"')
+
+        if commands:
+            i3.command(";".join(commands))
+
+    return rename
+
+
+def main():
+    i3 = i3ipc.Connection()
+    rename = renamer(i3)
+    for event in SUBSCRIPTIONS:
+        i3.on(event, rename)
+
+    # execute at startup so we don't have to wait for the first event
+    rename(i3)
+
+    i3.main()
+
+
+if __name__ == "__main__":
+    main()

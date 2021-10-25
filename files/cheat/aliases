@@ -1,0 +1,21 @@
+gs  # git status
+gd  # git diff
+
+la  # ls -lAFh --color=auto
+
+bwc $name  # copy bitwarden password to clipboard
+
+cht <lang> <query>  # search stack overflow for an answer
+chtp <query>        # search stack overflow for a python answer
+chtr <query>        # search stack overflow for a rust answer
+
+into $path  # mkdir a (potentially nested) path and cd into it
+..          # go up a directory
+...         # go up two directories
+....        # go up three directories
+
+revenv       # delete a project's virtualenvironment, recreate it, and reinstall deps
+chal <port>  # run a chalice server (on specified port), then go back to the origin directory
+
+sizes  # get the sizes of everything in the working directory
+i      # alias for sizes

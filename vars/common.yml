@@ -1,0 +1,14 @@
+kernel: linux
+
+hostname: naya-workstation
+username: naya
+
+theme: nameme
+# TODO: somehow extract theme_font from the theme directory
+theme_font: Noto Sans
+theme_dir: "files/theme/{{ theme }}/"
+
+# 30 minutes
+autolock_timeout: 30
+
+dpi: 75

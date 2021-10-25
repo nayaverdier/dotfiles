@@ -1,0 +1,4 @@
+- name: Install system fonts
+  aur:
+    packages: ttf-ms-fonts
+  become: makepkg

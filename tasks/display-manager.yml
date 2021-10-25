@@ -1,0 +1,30 @@
+- name: Install LightDM
+  pacman:
+    packages: lightdm
+
+- name: Install LightDM greeter
+  pacman:
+    packages: lightdm-gtk-greeter
+
+- name: Install LightDM config
+  copy:
+    src: files/lightdm.conf
+    dest: /etc/lightdm/lightdm.conf
+
+- name: Enable LightDM service
+  service:
+    service: lightdm
+    enabled: yes
+
+- name: Copy greeter config
+  template:
+    src: files/lightdm-gtk-greeter.conf
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+
+- name: Copy Xresources
+  template:
+    src: files/Xresources
+    dest: "/home/{{ username }}/.Xresources"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

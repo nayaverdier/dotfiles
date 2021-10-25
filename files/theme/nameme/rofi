@@ -1,0 +1,69 @@
+* {
+  text-color: white;
+  background: rgba(27, 38, 48, 95%);
+  background-color: rgba(0, 0, 0, 0%);
+}
+
+window {
+  background-color: @background;
+  border: 1;
+  padding: 5;
+}
+
+inputbar {
+  children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
+}
+
+textbox-prompt-colon {
+  expand:     false;
+  str:        ":";
+  text-color: rgba( 196, 203, 212, 100%);
+  padding: 0.3em 0;
+}
+
+prompt {
+  text-color: rgba( 196, 203, 212, 100%);
+  padding: 0.3em 0 0.3em 0.3em;
+}
+
+entry {
+  padding: 0.3em;
+}
+
+listview {
+  fixed-height: 0;
+  border: 0px 0px 0px;
+  spacing: 2px;
+  scrollbar: true;
+  cycle: false;
+  padding: 2px 0px 0px;
+}
+
+scrollbar {
+  width: 4px;
+  border: 0;
+  handle-color: @text-color;
+  handle-width: 8px;
+  padding: 0;
+}
+
+element {
+  border: 0;
+  padding: 16px;
+}
+
+element normal {
+  background-color: @background;
+}
+
+element selected.normal {
+  background-color: rgba(64, 132, 214, 100%);
+}
+
+element alternate.normal {
+  background-color: rgba(35, 49, 63, 95%);
+}
+
+element-icon {
+  size: 4%;
+}

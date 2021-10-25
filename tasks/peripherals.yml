@@ -1,0 +1,4 @@
+- name: Configure trackpad
+  copy:
+    src: files/touchpad.conf
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf

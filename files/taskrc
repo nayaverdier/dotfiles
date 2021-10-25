@@ -1,0 +1,5 @@
+data.location=~/.task
+
+urgency.user.project.SmartHome.coefficient=-5
+urgency.user.project.Uplift.coefficient=5
+urgency.user.tag.Study.coefficient=-1

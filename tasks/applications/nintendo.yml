@@ -1,0 +1,18 @@
+- name: Install nintendo emulators
+  pacman:
+    packages:
+      - mupen64plus
+      - joyutils
+
+- name: Install joycon drivers
+  aur:
+    packages:
+    - hid-nintendo-dkms
+    - joycond-git
+  become: makepkg
+
+- name: Enable joycond service
+  service:
+    service: joycond
+    started: yes
+    enabled: yes

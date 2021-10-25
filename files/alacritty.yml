@@ -1,0 +1,14 @@
+key_bindings:
+  # https://github.com/alacritty/alacritty/issues/3652
+  - { key: Back, mods: Shift, chars: "\x7f" }
+  - { key: Key0,     mods: Command, action: ResetFontSize }
+  - { key: Equals,   mods: Command, action: IncreaseFontSize }
+  - { key: Minus,    mods: Command, action: DecreaseFontSize }
+
+scrolling:
+  history: 10000
+
+env:
+  TERM: xterm-256color
+
+{% include theme_dir + "alacritty" %}

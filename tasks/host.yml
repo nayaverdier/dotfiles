@@ -1,0 +1,11 @@
+- name: Set hostname
+  copy:
+    content: "{{ hostname }}"
+    dest: /etc/hostname
+
+- name: Set hosts
+  copy:
+    content: |
+      127.0.0.1 localhost
+      ::1 localhost
+    dest: /etc/hosts

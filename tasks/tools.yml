@@ -1,0 +1,56 @@
+- name: Install dev tools
+  pacman:
+    packages:
+    - man-db
+    - bat
+    - tree
+    - nano
+    - screenfetch
+    - flameshot
+    - rsync
+    - nmap
+    - httpie
+    - jq
+    - wget
+    - curl
+    - lsof
+    - postgresql
+    - usbutils
+    - the_silver_searcher
+    - pciutils
+    - dnsutils
+    - ffmpeg
+    - imagemagick
+    - dmenu
+    - mediainfo
+    - cronie
+    - perl-image-exiftool
+    - youtube-dl
+    - xclip
+    - zip
+    - unzip
+    - blueman
+    - redis
+
+- name: Install dev tools (AUR)
+  aur:
+    packages:
+    - duf
+    - git-delta
+    - cheat
+    - bottom
+  become: makepkg
+
+- name: Copy cheat configuration
+  copy:
+    src: files/cheat/
+    dest: "/home/{{ username }}/.config/cheat"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Enable cronie service
+  service:
+    service: cronie
+    started: yes
+    enabled: yes

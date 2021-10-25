@@ -1,0 +1,10 @@
+- name: Install NordVPN
+  aur:
+    packages: nordvpn-bin
+
+
+- name: Start NordVPN service
+  service:
+    service: nordvpnd
+    started: yes
+    enabled: yes

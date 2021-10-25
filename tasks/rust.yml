@@ -1,0 +1,5 @@
+- name: Install rust
+  pacman:
+    packages:
+    - rustup
+    - perf

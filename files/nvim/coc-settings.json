@@ -1,0 +1,38 @@
+{
+  "coc.preferences.colorSupport": false,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "css",
+    "scss",
+    "json"
+  ],
+  "python.formatting.provider": "black",
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  "prettier.disableLanguages": ["html"],
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "yaml.customTags": [
+    "!Ref",
+    "!Sub",
+    "!GetAtt",
+    "!ImportValue",
+    "!Split",
+    "!Select",
+    "!Or",
+    "!And",
+    "!fn",
+    "!Not",
+    "!FindInMap sequence",
+    "!If sequence",
+    "!Equals sequence",
+    "!Join sequence"
+  ],
+  "cfnlint.detectCfnRegExps": ["template[a-zA-Z0-9_\\-]*\\.yaml"]
+}

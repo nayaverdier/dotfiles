@@ -1,0 +1,9 @@
+configuration {
+  modi: "drun,window,calc,emoji";
+  dpi: {{ dpi }};
+  font: "{{ theme_font }} 12";
+  location: 0;
+  drun-match-fields: "name,generic,exec,categories";
+  show-icons: true;
+  theme: "{{ theme }}";
+}

@@ -1,0 +1,46 @@
+# Process/system monitor (top alternative)
+btm
+
+# cat with syntax highlighting
+bat
+
+# directory tree
+tree
+
+# view system information
+screenfetch
+
+# network mapper (port scanning)
+nmap
+
+# Make HTTP requests
+http
+
+# Format / extract json
+jq
+
+# ag/the_silver_searcher (improved grep/ack)
+ag
+
+# editors
+nvim # aliased to vim
+nano
+
+# video/audio manupulation
+ffmpeg
+
+# picture manupulation (imagemagick)
+convert
+
+# .zip file manipulation
+unzip
+zip
+
+# file syncing / transferring
+rsync
+
+# disk usage tool (alternative to du)
+duf
+
+# view cheat sheets of tools
+cheat

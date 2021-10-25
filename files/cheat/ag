@@ -1,0 +1,8 @@
+# search for text in the current directory
+ag <pattern>
+
+# find matching files
+ag -l <pattern>
+
+# search in filenames with matching paths
+ag -G '\.ext$' <pattern>

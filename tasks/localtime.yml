@@ -1,0 +1,4 @@
+- name: Set timezone to America/Los_Angeles
+  symlink:
+    path: /etc/localtime
+    target: /usr/share/zoneinfo/America/Los_Angeles

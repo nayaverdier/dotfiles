@@ -1,0 +1,6 @@
+- name: Install bitwarden
+  aur:
+    packages:
+    - bitwarden-bin
+    - bitwarden-cli-bin
+  become: makepkg

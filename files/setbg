@@ -1,0 +1,13 @@
+#!/bin/sh
+
+link_location="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
+
+# only create link if $1 was passed in and is a valid file
+true_location="$(readlink -f "$1")" &&
+case "$(file --mime-type -b "$true_location")" in
+	image/* ) ln -sf "$(readlink -f "$1")" "$link_location" && notify-send -i "$link_location" "Changing wallpaper..." ;;
+	inode/directory ) ln -sf "$(find "$true_location" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$link_location" && notify-send -i "$link_location" "Random Wallpaper chosen." ;;
+	*) notify-send "Error" "Not a valid image." ; exit 1;;
+esac
+
+feh --bg-scale --no-fehbg --no-xinerama "$link_location"

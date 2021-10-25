@@ -1,0 +1,4 @@
+- name: Install minecraft
+  aur:
+    packages: minecraft-launcher
+  become: makepkg

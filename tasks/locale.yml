@@ -1,0 +1,14 @@
+- name: Set locale to en_US
+  copy:
+    content: "en_US.UTF-8 UTF-8\n"
+    dest: /etc/locale.gen
+  register: locale_gen
+
+- name: Generate locale files
+  command: locale-gen
+  when: locale_gen.changed
+
+- name: Configure locale
+  copy:
+    content: "LANG=en_US.UTF-8"
+    dest: /etc/locale.conf

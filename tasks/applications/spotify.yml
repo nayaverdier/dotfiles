@@ -1,0 +1,4 @@
+- name: Install spotify
+  aur:
+    packages: spotify
+  become: makepkg

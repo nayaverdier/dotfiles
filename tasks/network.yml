@@ -1,0 +1,21 @@
+- name: Install NetworkManager, openvpn and other helpers
+  pacman:
+    packages:
+    - networkmanager
+    - network-manager-applet
+    - nm-connection-editor
+    - openvpn
+    - networkmanager-openvpn
+    - networkmanager-l2tp
+    - strongswan
+
+- name: Start NetworkManager service
+  service:
+    service: NetworkManager
+    started: yes
+    enabled: yes
+
+- name: Make NetworkManager use iwd
+  copy:
+    src: files/network-manager/wifi_backend.conf
+    dest: /etc/NetworkManager/conf.d/wifi_backend.conf

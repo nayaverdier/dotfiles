@@ -1,0 +1,48 @@
+- name: Install zsh and plugins
+  pacman:
+    packages:
+    - zsh
+    - zsh-syntax-highlighting
+    - zsh-autosuggestions
+    - zsh-completions
+    - fzf
+
+- name: Install font awesome
+  aur:
+    packages: ttf-font-awesome
+  become: makepkg
+
+- name: Clone Powerlevel10k Theme
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    depth: 1
+    dest: "/home/{{ username }}/.zsh/powerlevel10k/"
+  become: "{{ username }}"
+
+- name: Install Meslo Nerd Font for Powerlevel10k
+  aur:
+    packages: ttf-meslo-nerd-font-powerlevel10k
+  become: makepkg
+
+- name: Copy zshrc
+  copy:
+    src: files/zsh/zshrc
+    dest: "/home/{{ username }}/.zshrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Make .zsh directory
+  directory:
+    path: "/home/{{ username }}/.zsh"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+
+- name: Copy zsh plugins
+  copy:
+    src: files/zsh/plugins/
+    dest: "/home/{{ username }}/.zsh/plugins"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

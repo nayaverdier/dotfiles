@@ -1,0 +1,5 @@
+# View all device information (automatically colored)
+duf
+
+# View all devices, include pseudo/duplicate/inaccessible
+duf --all

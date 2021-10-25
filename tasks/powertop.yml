@@ -1,0 +1,13 @@
+- name: Install powertop
+  pacman:
+    packages: powertop
+
+- name: Install powertop service
+  copy:
+    src: files/powertop.service
+    dest: /etc/systemd/system/powertop.service
+
+- name: Enable powertop service on boot
+  service:
+    service: powertop
+    enabled: yes

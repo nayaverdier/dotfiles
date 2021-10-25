@@ -1,0 +1,87 @@
+- hosts: localhost
+  connection: local
+
+  vars_files:
+  - vars/common.yml
+  - "vars/{{ install_model | default('virtualbox', True) }}.yml"
+
+  vars_prompt:
+  - name: login_password
+    prompt: Enter a password for your user
+    private: yes
+    confirm: yes
+
+  tasks:
+  - include: tasks/debug.yml
+    tags: [system, debug]
+
+  - name: Install setup script
+    template:
+      src: files/setup-script
+      dest: "/usr/local/bin/setup-{{ model }}"
+      mode: 0755
+    tags: [setup-script]
+
+  - include: tasks/locale.yml
+    tags: [system, locale]
+  - include: tasks/localtime.yml
+    tags: [system, localtime]
+  - include: tasks/host.yml
+    tags: [system, host]
+  - include: tasks/sudo.yml
+    tags: [system, sudo]
+  - include: tasks/powertop.yml
+    tags: [system, powertop]
+  - include: tasks/udiskie.yml
+    tags: [system, udiskie]
+  - include: tasks/peripherals.yml
+    tags: [system, peripherals]
+
+  - include: tasks/yay.yml
+    tags: [dev, yay]
+  - include: tasks/tools.yml
+    tags: [dev, tools]
+  - include: tasks/python.yml
+    tags: [dev, python]
+  - include: tasks/javascript.yml
+    tags: [dev, javascript]
+  - include: tasks/rust.yml
+    tags: [dev, rust]
+
+  - include: tasks/user.yml
+    tags: [user, linuxuser]
+  - include: tasks/ssh.yml
+    tags: [user, ssh]
+  - include: tasks/gpg.yml
+    tags: [user, gpg]
+  - include: tasks/git.yml
+    tags: [user, git]
+  - include: tasks/shell.yml
+    tags: [user, shell]
+  - include: tasks/fonts.yml
+    tags: [user, fonts]
+  - include: tasks/aws.yml
+    tags: [user, aws]
+  - include: tasks/network.yml
+    tags: [user, network]
+
+  # desktop environment setup
+  - include: tasks/xorg.yml
+    tags: [desktop, xorg]
+  - include: tasks/display-manager.yml
+    tags: [desktop, display-manager]
+  - include: tasks/gtk.yml
+    tags: [desktop, gtk]
+  - include: tasks/sound.yml
+    tags: [desktop, sound]
+  - include: tasks/bluetooth.yml
+    tags: [desktop, bluetooth]
+  - include: tasks/i3.yml
+    tags: [desktop, i3]
+  - include: tasks/dunst.yml
+    tags: [desktop, dunst]
+  - include: tasks/rofi.yml
+    tags: [desktop, rofi]
+
+  - include: "{{ item }}"
+    with_fileglob: "tasks/applications/*"

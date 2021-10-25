@@ -1,0 +1,9 @@
+colorize: true
+style: monokai
+formatter: terminal16m
+pager: delta
+cheatpaths:
+  - name: personal
+    path: ~/.config/cheat
+    tags: [ personal ]
+    readonly: false

@@ -1,0 +1,11 @@
+- name: Install taskwarrior
+  pacman:
+    packages: task
+
+- name: Configure taskwarrior
+  copy:
+    src: files/taskrc
+    dest: "/home/{{ username }}/.taskrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

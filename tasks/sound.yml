@@ -1,0 +1,17 @@
+- name: Install sound programs
+  pacman:
+    packages:
+    - alsa-utils
+    - pavucontrol
+    - pulseaudio
+    - pulseaudio-alsa
+    - pulseaudio-bluetooth
+    - mpd
+    - mpc
+
+- name: Install volume script
+  copy:
+    src: files/bin/volume
+    dest: /usr/local/bin/volume
+    mode: 0755
+

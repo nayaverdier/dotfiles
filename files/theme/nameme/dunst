@@ -1,0 +1,36 @@
+    indicate_hidden = yes
+    show_age_threshold = 60
+    idle_threshold = 120
+
+    ignore_newline = no
+    word_wrap = yes
+    bounce_freq = 0
+
+    alignment = center
+
+    geometry = "300x10-30+55"
+
+    separator_color = frame
+    separator_height = 2
+    padding = 8
+    horizontal_padding = 8
+
+[frame]
+    width = 0
+    color = "#000000"
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 10
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 10
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    timeout = 0
+

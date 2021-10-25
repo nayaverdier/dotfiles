@@ -1,0 +1,11 @@
+- name: Install BlueZ
+  pacman:
+    packages:
+    - bluez
+    - bluez-utils
+
+- name: Start bluetooth service
+  service:
+    service: bluetooth
+    started: yes
+    enabled: yes

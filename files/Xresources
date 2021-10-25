@@ -1,0 +1,2 @@
+Xft.dpi: {{ dpi }}
+*.dpi: {{ dpi }}

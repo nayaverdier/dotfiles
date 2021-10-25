@@ -1,0 +1,2 @@
+# Compare two files using delta
+delta old_file new_file
