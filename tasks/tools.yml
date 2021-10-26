@@ -26,6 +26,7 @@
     - cronie
     - perl-image-exiftool
     - youtube-dl
+    - namcap
     - xclip
     - zip
     - unzip

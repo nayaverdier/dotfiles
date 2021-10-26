@@ -5,7 +5,7 @@
 - name: Copy sudoers
   template:
     src: files/sudoers
-    dest: /home/naya/Downloads/etc/sudoers
+    dest: /etc/sudoers
     mode: 0440
     validate: /usr/sbin/visudo -csf %s
 

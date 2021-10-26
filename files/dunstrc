@@ -1,8 +1,6 @@
 [global]
-    startup_notification = true
-
     font = {{ theme_font }} 11
-    allow_markup = yes
+    markup = yes
     follow = keyboard
 
     # The format of the message. Possible variables are:
@@ -24,15 +22,3 @@
     icon_path = /usr/share/icons/Papirus/24x24/panel/:/usr/share/icons/Papirus/24x24/devices/:/usr/share/icons/Papirus/24x24/status/:/usr/share/icons/Papirus/24x24/legacy/
 
 {% include theme_dir + "dunst" %}
-
-[shortcuts]
-    # TODO: base mod on model (e.g. mod1 on virtualbox, mod4 otherwise)
-
-    close = mod4+m
-    close_all = mod4+shift+m
-
-    # redisplay last message(s)
-    history = mod4+n
-
-    # context menu
-    context = mod4+shift+i

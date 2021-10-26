@@ -25,6 +25,11 @@ bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mp
 bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
+# notifications
+bindsym $mod+Shift+m exec dunstctl close-all
+bindsym $mod+n exec dunstctl history-pop
+bindsym $mod+Shift+i exec dunstctl context
+
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show window
 bindsym $mod+c exec rofi -show calc -no-show-match -no-sort

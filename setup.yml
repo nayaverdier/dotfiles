@@ -84,4 +84,5 @@
     tags: [desktop, rofi]
 
   - include: "{{ item }}"
+    tags: [application, "{{ item | filename }}"]
     with_fileglob: "tasks/applications/*"

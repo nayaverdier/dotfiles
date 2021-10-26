@@ -2,9 +2,13 @@
   aur:
     packages: nordvpn-bin
 
-
 - name: Start NordVPN service
   service:
     service: nordvpnd
     started: yes
     enabled: yes
+
+- name: Add primary user to the nordvpn group
+  user:
+    user: "{{ username }}"
+    groups: nordvpn
