@@ -58,6 +58,8 @@
     tags: [user, git]
   - include: tasks/shell.yml
     tags: [user, shell]
+  - include: tasks/cheat.yml
+    tags: [user, cheat]
   - include: tasks/fonts.yml
     tags: [user, fonts]
   - include: tasks/aws.yml

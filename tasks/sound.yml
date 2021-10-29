@@ -6,8 +6,7 @@
     - pulseaudio
     - pulseaudio-alsa
     - pulseaudio-bluetooth
-    - mpd
-    - mpc
+    - pipewire
 
 - name: Install volume script
   copy:

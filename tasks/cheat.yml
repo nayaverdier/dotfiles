@@ -1,0 +1,12 @@
+- name: Install cheat
+  aur:
+    packages: cheat
+  become: makepkg
+
+- name: Copy cheat configuration
+  copy:
+    src: files/cheat/
+    dest: "/home/{{ username }}/.config/cheat"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

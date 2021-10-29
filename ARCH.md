@@ -46,7 +46,7 @@ Installation Guide for my specific use case.
    | /dev/nvme0n1p5 | \<swap\>        | 20G       |
    | /dev/nvme0n1p6 | Arch            | Remaining |
 
-   - EFI partition needs the `EFI` type (`1` for GPT)
+   - EFI partition needs the `EFI` type (`1` for GPT, or `ef` on MBR disks like VirtualBox)
    - The boot partition must be marked as bootable (use the `a` command in `fdisk`)
    - Use `w` to save the partition map
 
@@ -57,7 +57,7 @@ Installation Guide for my specific use case.
    - `mkfs.ext4 /dev/nvme0n1p6` (arch)
 6. Mount the partitions
    - `mount /dev/nvme0n1p6 /mnt`
-   - `/mkdir /mnt/boot`
+   - `mkdir /mnt/boot`
    - `mount /dev/nvme0n1p4 /mnt/boot`
    - `mkdir /mnt/boot/efi`
    - `mount /dev/nvme0n1p1 /mnt/boot/efi`
@@ -85,8 +85,9 @@ Installation Guide for my specific use case.
 12. `passwd` to set a root password
 13. Install GRUB bootloader
     - See the relevant section of the [virtualbox installation guide](https://medium.com/@gevorggalstyan/how-to-install-arch-linux-on-virtualbox-93bc83ded692)
-    - `pacman -S grub efibootmgr`
+    - `pacman -S grub efibootmgr` (`pacman -S grub os-prober` on VirtualBox)
     - `grub-install /dev/nvme0n1 --target=x86_64-efi --efi-directory=/boot/efi/ --bootloader-id=GRUB`
+      (just `grub-install /dev/sda` on VirtualBox)
     - Update `/etc/default/grub` with the following settings:
 
       ```bash

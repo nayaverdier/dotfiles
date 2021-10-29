@@ -8,6 +8,7 @@
     - networkmanager-openvpn
     - networkmanager-l2tp
     - strongswan
+    - iw
 
 - name: Start NetworkManager service
   service:

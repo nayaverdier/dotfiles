@@ -4,16 +4,22 @@
     - base-devel
     - git
 
-- name: Create makepkg group
-  group: makepkg
-
 - name: Create makepkg user
   user:
     user: makepkg
-    groups: makepkg
     system: yes
 
-- name: Install yay
-  aur:
-    packages: yay
+- name: Clone yay when needed
+  command:
+    command: git clone https://aur.archlinux.org/yay.git /home/makepkg/yay
+    condition: pacman -Q yay
+    condition_code: 1
+  become: makepkg
+  register: yay
+
+- name: Build yay when needed
+  command:
+    command: makepkg -sirc
+    directory: /home/makepkg/yay
+  when: yay.changed
   become: makepkg

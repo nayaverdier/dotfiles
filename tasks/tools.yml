@@ -18,7 +18,7 @@
     - usbutils
     - the_silver_searcher
     - pciutils
-    - dnsutils
+    - bind
     - ffmpeg
     - imagemagick
     - dmenu
@@ -26,29 +26,21 @@
     - cronie
     - perl-image-exiftool
     - youtube-dl
-    - namcap
+    - binutils
     - xclip
     - zip
     - unzip
     - blueman
     - redis
+    - xdotool
 
 - name: Install dev tools (AUR)
   aur:
     packages:
     - duf
     - git-delta
-    - cheat
     - bottom
   become: makepkg
-
-- name: Copy cheat configuration
-  copy:
-    src: files/cheat/
-    dest: "/home/{{ username }}/.config/cheat"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
 
 - name: Enable cronie service
   service:

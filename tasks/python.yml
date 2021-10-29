@@ -3,8 +3,8 @@
     packages:
     - python
     - python-pip
+    - python-poetry
     - python-dateutil
     - python-docutils
     - unixodbc
-    - jedi-language-server
     - python-cookiecutter

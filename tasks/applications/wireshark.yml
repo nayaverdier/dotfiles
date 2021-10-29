@@ -1,3 +1,0 @@
-- name: Install Wireshark
-  pacman:
-    packages: wireshark-qt
