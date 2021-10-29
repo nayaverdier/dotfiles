@@ -1,6 +1,7 @@
 - name: Create primary user
   user:
     user: "{{ username }}"
+    create_home: true
     shell: /usr/bin/zsh
     groups: sudo
     password: "{{ login_password | password_hash('sha512') }}"

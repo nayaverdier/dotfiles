@@ -9,17 +9,7 @@
     user: makepkg
     system: yes
 
-- name: Clone yay when needed
-  command:
-    command: git clone https://aur.archlinux.org/yay.git /home/makepkg/yay
-    condition: pacman -Q yay
-    condition_code: 1
-  become: makepkg
-  register: yay
-
-- name: Build yay when needed
-  command:
-    command: makepkg -sirc
-    directory: /home/makepkg/yay
-  when: yay.changed
+- name: Install yay
+  aur:
+    packages: yay
   become: makepkg

@@ -78,14 +78,13 @@ Installation Guide for my specific use case.
 
 9. `arch-chroot /mnt` to enter the new installation
 10. Prepare for networking (once the live boot is gone):
-    - `pacman -Syu dhcpcd iwd`
-    - `systemctl enable dhcpcd`
-    - `systemctl enable iwd`
+    - `pacman -Sy dhcpcd iwd`
+    - `systemctl enable dhcpcd iwd`
 11. `hwclock --systohc` to set the hardware clock
 12. `passwd` to set a root password
 13. Install GRUB bootloader
     - See the relevant section of the [virtualbox installation guide](https://medium.com/@gevorggalstyan/how-to-install-arch-linux-on-virtualbox-93bc83ded692)
-    - `pacman -S grub efibootmgr` (`pacman -S grub os-prober` on VirtualBox)
+    - `pacman -S grub efibootmgr` (`pacman -S grub` on VirtualBox)
     - `grub-install /dev/nvme0n1 --target=x86_64-efi --efi-directory=/boot/efi/ --bootloader-id=GRUB`
       (just `grub-install /dev/sda` on VirtualBox)
     - Update `/etc/default/grub` with the following settings:
@@ -104,7 +103,7 @@ Installation Guide for my specific use case.
       immediately booting into Arch. This may not be what you want.
     - `grub-mkconfig -o /boot/grub/grub.cfg` to configure GRUB
 14. `exit` to go back to the live ISO
-15. `unmount -R /mnt` to unmount the arch installation
+15. `umount -R /mnt` to unmount the arch installation
 16. `reboot now` to reboot, hopefully into your real arch installation
 17. You should be able to unplug the Arch USB now. See the [README](README.md)
     to fully configure the user space
