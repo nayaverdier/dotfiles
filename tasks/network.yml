@@ -20,3 +20,9 @@
   copy:
     src: files/network-manager/wifi_backend.conf
     dest: /etc/NetworkManager/conf.d/wifi_backend.conf
+
+
+- name: Configure iwlwifi
+  copy:
+    content: options iwlwifi wd_disable=1
+    dest: /etc/modprobe.d/iwlwifi.conf
