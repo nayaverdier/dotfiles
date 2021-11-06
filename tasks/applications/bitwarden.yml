@@ -1,6 +1,5 @@
 - name: Install bitwarden
-  aur:
+  pacman:
     packages:
-    - bitwarden-bin
-    - bitwarden-cli-bin
-  become: makepkg
+    - bitwarden
+    - bitwarden-cli
