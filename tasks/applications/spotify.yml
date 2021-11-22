@@ -2,3 +2,8 @@
   aur:
     packages: spotify
   become: makepkg
+
+- name: Scale spotify
+  copy:
+    src: files/spotify.desktop
+    dest: /home/{{ username }}/.local/share/applications/spotify.desktop

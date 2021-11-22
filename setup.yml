@@ -34,8 +34,6 @@
     tags: [system, powertop]
   - include: tasks/udiskie.yml
     tags: [system, udiskie]
-  - include: tasks/peripherals.yml
-    tags: [system, peripherals]
 
   - include: tasks/yay.yml
     tags: [dev, yay]

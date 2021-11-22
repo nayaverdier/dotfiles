@@ -2,6 +2,7 @@
     font = {{ theme_font }} 11
     markup = yes
     follow = keyboard
+    mouse_left = close_current
 
     # The format of the message. Possible variables are:
     #   %a  appname

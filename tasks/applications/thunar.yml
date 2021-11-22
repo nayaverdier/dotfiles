@@ -1,3 +1,5 @@
-- name: Install thunar
+- name: Install thunar (file manager) and tumbler (for thumbnails)
   pacman:
-    packages: thunar
+    packages:
+    - thunar
+    - tumbler

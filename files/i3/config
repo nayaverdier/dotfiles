@@ -6,6 +6,7 @@ set $mod Mod1
 set $mod Mod4
 {% endif %}
 
+# startup commands
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id flameshot
 exec_always --no-startup-id udiskie
@@ -14,13 +15,16 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/i3/i3autoname
 exec_always --no-startup-id setbg
 
+# display brightness
 bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86MonBrightnessUp exec light -A 5
 
+# volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume up
 bindsym XF86AudioLowerVolume exec --no-startup-id volume down
 bindsym XF86AudioMute exec --no-startup-id volume mute
 
+# media controller
 bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -30,12 +34,17 @@ bindsym $mod+Shift+m exec dunstctl close-all
 bindsym $mod+n exec dunstctl history-pop
 bindsym $mod+Shift+i exec dunstctl context
 
+# launcher
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show window
 bindsym $mod+c exec rofi -show calc -no-show-match -no-sort
 bindsym $mod+e exec rofi -show emoji
 
+# programs
 bindsym $mod+Return exec alacritty
+bindsym $mod+Print exec flameshot gui
+
+# general
 bindsym $mod+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+x floating toggle
@@ -44,8 +53,6 @@ bindsym $mod+m move workspace to output right
 bindsym $mod+Shift+s sticky toggle
 
 floating_modifier $mod
-
-bindsym $window+n exec i3-input -F 'rename workspace to "%s"' -P 'New Name: '
 
 {% for (direction, vim) in [("up", "k"), ("down", "j"), ("left", "h"), ("right", "l")] %}
 bindsym $mod+{{ vim }} focus {{ direction }}

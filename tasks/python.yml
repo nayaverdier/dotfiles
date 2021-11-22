@@ -8,3 +8,7 @@
     - python-docutils
     - unixodbc
     - python-cookiecutter
+
+- name: Install MSSQL Server drivers
+  aur:
+    packages: msodbcsql

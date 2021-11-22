@@ -34,3 +34,8 @@
   pacman:
     packages: xf86-video-intel
   when: model == "dell-xps-7590"
+
+- name: Copy xorg configuration
+  copy:
+    src: files/xorg
+    dest: /etc/X11/xorg.conf.d/
