@@ -33,6 +33,8 @@
     - blueman
     - redis
     - xdotool
+    - screen
+    - namcap
 
 - name: Install dev tools (AUR)
   aur:

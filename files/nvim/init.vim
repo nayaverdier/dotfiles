@@ -48,13 +48,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() } 
 " automatically close/delete brackets, parents, and quotes
 Plug 'jiangmiao/auto-pairs'
 
-" language syntax plugins
-Plug 'vim-python/python-syntax'
-Plug 'leafgarland/typescript-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
+" language syntax highlighting and indentation support
+Plug 'sheerun/vim-polyglot'
 
 " Color boxes to preview rgb/hex/etc
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
