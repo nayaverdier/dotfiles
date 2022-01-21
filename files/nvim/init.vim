@@ -298,9 +298,14 @@ nnoremap <leader>q :bp<cr>:bd #<cr>
 
 nmap <leader>w :w<cr>
 
+"" Open a file relative to the current file's directory
+nmap <leader>e :e <C-r>=expand('%:p:h') . '/'<cr>
+
+"" Stats of the current file
 nnoremap <leader>s g<c-g>
 
-nnoremap <silent> <leader>v :NERDTreeFind<cr>
+nnoremap <silent> <leader>n :NERDTreeToggle<cr>
+nnoremap <silent> <leader>m :NERDTreeFind<cr>
 
 "" Navigation
 
