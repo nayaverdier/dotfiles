@@ -10,7 +10,6 @@
     packages:
     - rofi-emoji
     - ttf-apple-emoji
-  become: makepkg
 
 - name: Create rofi theme directory
   directory:

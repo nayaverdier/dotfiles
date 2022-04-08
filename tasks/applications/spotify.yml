@@ -1,7 +1,6 @@
 - name: Install spotify
   aur:
     packages: spotify
-  become: makepkg
 
 - name: Scale spotify
   copy:

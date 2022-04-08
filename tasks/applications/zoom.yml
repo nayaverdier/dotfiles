@@ -1,4 +1,3 @@
 - name: Install Zoom
   aur:
     packages: zoom
-  become: makepkg

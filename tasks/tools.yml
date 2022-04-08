@@ -35,6 +35,13 @@
     - xdotool
     - screen
     - namcap
+    - thefuck
+    - docker
+
+- name: Add primary user to docker group
+  user:
+    user: "{{ username }}"
+    groups: docker
 
 - name: Install dev tools (AUR)
   aur:
@@ -42,7 +49,7 @@
     - duf
     - git-delta
     - bottom
-  become: makepkg
+    - aws-cdk
 
 - name: Enable cronie service
   service:

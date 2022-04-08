@@ -10,7 +10,6 @@
 - name: Install font awesome
   aur:
     packages: ttf-font-awesome
-  become: makepkg
 
 - name: Clone Powerlevel10k Theme
   git:
@@ -22,7 +21,6 @@
 - name: Install Meslo Nerd Font for Powerlevel10k
   aur:
     packages: ttf-meslo-nerd-font-powerlevel10k
-  become: makepkg
 
 - name: Copy zshrc
   copy:

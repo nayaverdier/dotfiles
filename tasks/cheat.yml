@@ -1,7 +1,6 @@
 - name: Install cheat
   aur:
     packages: cheat
-  become: makepkg
 
 - name: Copy cheat configuration
   copy:

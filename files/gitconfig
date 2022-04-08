@@ -7,6 +7,8 @@
     excludesfile = /home/{{ username }}/.gitignore
 [commit]
     gpgsign = true
+[push]
+    default = current
 [gpg]
     program = gpg2
 [credential]

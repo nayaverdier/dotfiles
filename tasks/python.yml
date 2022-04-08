@@ -9,6 +9,11 @@
     - unixodbc
     - python-cookiecutter
 
+- name: Install python3.7
+  aur:
+    packages:
+    - python37
+
 - name: Install MSSQL Server drivers
   aur:
     packages: msodbcsql

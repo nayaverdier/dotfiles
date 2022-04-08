@@ -1,7 +1,6 @@
 - name: Install awscli
   aur:
     packages: aws-cli-v2-bin
-  become: makepkg
 
 - name: Create aws config directory
   directory:
