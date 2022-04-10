@@ -45,9 +45,6 @@ Plug 'junegunn/fzf.vim'
 " Code Completion / language server integration
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() } }
 
-" automatically close/delete brackets, parents, and quotes
-Plug 'jiangmiao/auto-pairs'
-
 " language syntax highlighting and indentation support
 Plug 'sheerun/vim-polyglot'
 

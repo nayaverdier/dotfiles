@@ -3,6 +3,7 @@
     packages:
     - bluez
     - bluez-utils
+    - bluez-libs
 
 - name: Start bluetooth service
   service:

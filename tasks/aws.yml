@@ -1,18 +1,3 @@
 - name: Install awscli
   aur:
     packages: aws-cli-v2-bin
-
-- name: Create aws config directory
-  directory:
-    path: "/home/{{ username }}/.aws"
-    group: "{{ username }}"
-    owner: "{{ username }}"
-    mode: 0755
-
-- name: Copy aws config
-  copy:
-    src: files/aws/config
-    dest: "/home/{{ username }}/.aws/config"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644

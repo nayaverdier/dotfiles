@@ -1,0 +1,3 @@
+- name: Install lilypond
+  pacman:
+    packages: lilypond

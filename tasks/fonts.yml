@@ -2,6 +2,22 @@
   aur:
     packages:
     - ttf-ms-fonts
+    - ttf-apple-emoji
     - adobe-source-han-sans-cn-fonts
     - adobe-source-han-sans-jp-fonts
     - adobe-source-han-sans-kr-fonts
+
+- name: Create fontconfig config directory
+  directory:
+    path: "/home/{{ username }}/.config/fontconfig"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0755
+
+- name: Copy fonts.conf
+  copy:
+    src: files/fonts.conf
+    dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
