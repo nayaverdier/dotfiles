@@ -16,7 +16,7 @@ cd instater
 pacman -Sy python-jinja python-passlib python-rich python-yaml
 pacman -Sy python-build python-install python-setuptools python-wheel
 sudo -u nobody makepkg
-pacman -U instater-0.8.0-1-any.pkg.tar.zst
+pacman -U instater-0.10.0-1-any.pkg.tar.zst
 
 # if yay is installed
 yay -Sy instater

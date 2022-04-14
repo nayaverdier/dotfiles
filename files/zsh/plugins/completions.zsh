@@ -10,14 +10,15 @@ else
         compinit -C;
 fi;
 
-# autoload -U compinit && compinit
-
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # highlight selection in menu underneath command
 zstyle ':completion:*' menu select
 
+zstyle ':completion:*' completer _extensions _complete _approximate
+
 zstyle ':completion:*' matcher-list '' \
   'm:{a-z\-}={A-Z\_}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:|?=** m:{a-z\-}={A-Z\_}'
+  'm:{a-zA-Z\-}={A-Za-z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-zA-Z\-}={A-Za-z\_}'

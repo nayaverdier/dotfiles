@@ -15,6 +15,7 @@
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
     depth: 1
+    fetch_tags: false
     dest: "/home/{{ username }}/.zsh/powerlevel10k/"
   become: "{{ username }}"
 
