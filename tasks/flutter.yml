@@ -1,0 +1,17 @@
+- name: Install flutter and android-studio
+  aur:
+    packages:
+    - flutter
+    - android-studio
+
+- name: Install android-tools
+  pacman:
+    packages:
+    - android-tools
+
+- name: Add primary user to flutterusers and adbusers groups
+  user:
+    user: "{{ username }}"
+    groups:
+    - flutterusers
+    - adbusers

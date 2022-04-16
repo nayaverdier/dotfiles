@@ -37,7 +37,6 @@
     - namcap
     - thefuck
     - docker
-    - flutter
 
 - name: Add primary user to docker group
   user:
