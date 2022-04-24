@@ -9,6 +9,7 @@
     - networkmanager-l2tp
     - strongswan
     - iw
+    - wireless_tools
 
 - name: Start NetworkManager service
   service:
@@ -26,3 +27,20 @@
   copy:
     content: options iwlwifi wd_disable=1
     dest: /etc/modprobe.d/iwlwifi.conf
+
+
+- name: Install mitmproxy
+  pacman:
+    packages: mitmproxy
+
+
+- name: Install Wireshark (with GUI)
+  pacman:
+    packages: wireshark-qt
+
+
+- name: Add primary user to wireshark group
+  user:
+    user: "{{ username }}"
+    groups:
+    - wireshark

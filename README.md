@@ -2,6 +2,9 @@
 
 See [ARCH.md](ARCH.md) for a barebones system installation
 
+See [instater](https://github.com/nayaverdier/instater) for documentation
+on the tool used to manage these dotfiles.
+
 On a clean arch installation, as root (or with sudo) run the following (instater
 will prompt for the user password)
 
@@ -21,7 +24,7 @@ pacman -U instater-0.10.0-1-any.pkg.tar.zst
 # if yay is installed
 yay -Sy instater
 
-
+# run instater to run all the tasks included in these dotfiles
 git clone https://github.com/nayaverdier/dotfiles.git
 cd dotfiles
 instater --vars "install_model=dell-xps-7590"
