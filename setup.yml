@@ -45,6 +45,8 @@
     tags: [dev, javascript]
   - include: tasks/rust.yml
     tags: [dev, rust]
+  - include: tasks/android.yml
+    tags: [dev, android]
 
   - include: tasks/user.yml
     tags: [user, linuxuser]

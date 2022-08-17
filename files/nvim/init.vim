@@ -75,7 +75,7 @@ set vb t_vb=
 set signcolumn=yes
 
 " set color scheme and enable highlighting
-colorscheme base16-default-dark
+colorscheme base16-gruvbox-dark-hard
 syntax on
 hi Normal ctermbg=NONE
 set termguicolors
@@ -209,8 +209,8 @@ set fillchars=eob:\ ,
 
 "" Line level
 
-" Only highlight the first 200 characters on each line (performance reasons)
-set synmaxcol=200
+" Only highlight the first 250 characters on each line (performance reasons)
+set synmaxcol=250
 
 " Only put one space after punctuation with join commands (e.g. gq, J)
 set nojoinspaces

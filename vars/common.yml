@@ -8,7 +8,4 @@ theme: nameme
 theme_font: Noto Sans
 theme_dir: "files/theme/{{ theme }}/"
 
-# 30 minutes
-autolock_timeout: 30
-
 dpi: 75

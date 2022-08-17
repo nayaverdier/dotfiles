@@ -15,17 +15,6 @@
     - polybar
     - i3lock-fancy-git
 
-- name: Install autolock service
-  template:
-    src: files/autolock.service
-    dest: /etc/systemd/system/autolock.service
-
-- name: Enable autolock service
-  service:
-    service: autolock
-    started: yes
-    enabled: yes
-
 - name: Copy wallpaper
   copy:
     src: "{{ theme_dir }}/wallpaper.jpg"
