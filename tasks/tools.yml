@@ -37,6 +37,7 @@
     - namcap
     - thefuck
     - docker
+    - pgcli
 
 - name: Add primary user to docker group
   user:

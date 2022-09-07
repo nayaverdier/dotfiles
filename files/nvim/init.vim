@@ -5,6 +5,9 @@ let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-ht
 
 call plug#begin()
 
+" Add GitHub Copilot integration
+Plug 'github/copilot.vim'
+
 " prevent modeline from running arbitrary code
 Plug 'ciaranm/securemodelines'
 
@@ -154,23 +157,27 @@ set splitbelow
 
 "" Autocompletion
 
-" Intelligently autocomplete on tab
-function! s:check_back_space() abort
+" Intelligently autocomplete on tab (TODO: don't clash with copilot.vim)
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" Confirm completion with enter key and break undo chain
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<cr>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
-endif
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible()
+  \? coc#pum#confirm()
+  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 "" File level
@@ -269,6 +276,13 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
 
 
+"" python
+
+" Sort imports when saving python file (this is just a workaround)
+" See https://github.com/neoclide/coc-python/issues/168
+autocmd BufWrite *.py :call CocAction('format')
+autocmd BufWrite *.py :CocCommand python.sortImports
+
 """ Misc
 
 " Only wait 300ms to write a swap file
@@ -294,6 +308,15 @@ noremap <C-q> :confirm qall<cr>
 nnoremap <leader>q :bp<cr>:bd #<cr>
 
 nmap <leader>w :w<cr>
+
+" Better indentation
+vnoremap > >gv
+vnoremap < <gv
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 "" Open a file relative to the current file's directory
 nmap <leader>e :e <C-r>=expand('%:p:h') . '/'<cr>
@@ -334,7 +357,7 @@ nnoremap <silent> <esc> :noh<cr><esc>
 map H ^
 map L $
 
-" copy / paste from system clipboard
+" copy / paste using system clipboard
 noremap <leader>y "+y
 noremap <leader>p "+p
 noremap <leader>P "+P
@@ -355,8 +378,12 @@ nnoremap <right> :bn<cr>
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gd <Plug>(coc-definition)
+
+xmap F :call CocActionAsync('format')<CR>
+nmap F :call CocActionAsync('format')<CR>
 
 xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
@@ -365,18 +392,20 @@ omap ac <Plug>(coc-classobj-a)
 
 nmap <leader>r <Plug>(coc-rename)
 
-" Implement methods for trait
+" (Rust) Implement methods for trait
 nnoremap <silent> <leader>i  :call CocActionAsync('codeAction', '', 'Implement missing members')<cr>
 
 " Show actions available at this location
-nnoremap <silent> <leader>a  :CocAction<cr>
+nmap <leader>a  <Plug>(coc-codeaction)
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+" Use K to show documentation in preview window.
+
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
-
-nnoremap <silent> K :call <SID>show_documentation()<cr>
