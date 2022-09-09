@@ -78,10 +78,13 @@ set vb t_vb=
 set signcolumn=yes
 
 " set color scheme and enable highlighting
+" (see https://github.com/neoclide/coc.nvim/wiki/F.A.Q#the-selection-highlight-not-looks-good)
+autocmd ColorScheme * hi CocMenuSel ctermbg=237 guibg=#13354A
 colorscheme base16-gruvbox-dark-hard
 syntax on
 hi Normal ctermbg=NONE
 set termguicolors
+
 
 " Highlight the symbol at cursor and its references
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -169,6 +172,11 @@ inoremap <silent><expr> <TAB>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Change GitHub Copilot trigger to <C-Space> to avoid clashing with CoC
+" autocomplete
+imap <silent><expr> <C-Space> copilot#Accept("")
+let g:copilot_no_tab_map = 1
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <
