@@ -176,6 +176,7 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " Change GitHub Copilot trigger to <C-Space> to avoid clashing with CoC
 " autocomplete
 imap <silent><expr> <C-Space> copilot#Accept("")
+imap <silent><expr> <right> copilot#Accept("")
 let g:copilot_no_tab_map = 1
 
 " Use <c-space> to trigger completion.
@@ -376,7 +377,8 @@ nnoremap <down> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
-inoremap <right> <nop>
+" Disabled since we bind Copilot to <right>
+" inoremap <right> <nop>
 
 " Left and right can switch buffers
 nnoremap <left> :bp<cr>
@@ -389,9 +391,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gd <Plug>(coc-definition)
-
-xmap F :call CocActionAsync('format')<CR>
-nmap F :call CocActionAsync('format')<CR>
 
 xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)

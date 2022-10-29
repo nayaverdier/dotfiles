@@ -13,6 +13,9 @@
     "scss",
     "json"
   ],
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "python.linting.mypyEnabled": true,
   "python.formatting.provider": "black",
   "javascript.autoClosingTags": true,
   "typescript.autoClosingTags": true,

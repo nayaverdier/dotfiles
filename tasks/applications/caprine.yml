@@ -1,3 +1,0 @@
-- name: Install Caprine (Messenger App)
-  pacman:
-    packages: caprine

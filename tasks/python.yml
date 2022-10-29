@@ -8,6 +8,7 @@
     - python-docutils
     - unixodbc
     - python-cookiecutter
+    - ipython
 
 - name: Install python3.7
   aur:

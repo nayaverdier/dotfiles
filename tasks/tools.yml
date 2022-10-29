@@ -38,6 +38,7 @@
     - thefuck
     - docker
     - pgcli
+    - fd
 
 - name: Add primary user to docker group
   user:
