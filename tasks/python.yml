@@ -17,4 +17,4 @@
 
 - name: Install MSSQL Server drivers
   aur:
-    packages: msodbcsql
+    packages: msodbcsql17

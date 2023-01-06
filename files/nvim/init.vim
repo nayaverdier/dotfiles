@@ -215,9 +215,11 @@ set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
 " Keep the cursor a couple of line from the top/bottom when scrolling
 set scrolloff=2
 
-" Show hidden characters (tab, nbsp, etc)
+" Show hidden characters (tab, nbsp, etc) and highlight trailing whitespace red
 set list
 set listchars=tab:\|\ ,nbsp:¬,extends:»,precedes:«,trail:•
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " Remove ~ on 'lines' at the bottom underneath the file
 set fillchars=eob:\ ,

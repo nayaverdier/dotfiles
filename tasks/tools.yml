@@ -52,6 +52,7 @@
     - git-delta
     - bottom
     - aws-cdk
+    - heroku-cli
 
 - name: Enable cronie service
   service:

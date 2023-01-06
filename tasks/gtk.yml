@@ -1,8 +1,7 @@
-- name: Install GTK themes
-  pacman:
+- name: Install GTK themes (AUR)
+  aur:
     packages:
-    - adapta-gtk-theme
-    - breeze
+    - gnome-themes-extra
 
 - name: Create gtk config directory
   directory:

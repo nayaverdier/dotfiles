@@ -7,12 +7,12 @@ set $mod Mod4
 {% endif %}
 
 # startup commands
+exec_always --no-startup-id "killall picom && picom -b --config ~/.config/picom/picom.conf"
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id flameshot
-exec_always --no-startup-id udiskie
+exec_always --no-startup-id "killall flameshot && flameshot"
+exec_always --no-startup-id "killall udiskie && udiskie"
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id ~/.config/i3/i3autoname
 exec_always --no-startup-id setbg
 
 # display brightness
@@ -99,5 +99,6 @@ for_window [class=".*"] border pixel 0
 font pango: {{ theme_font }} 11
 gaps inner 10
 gaps outer 0
+gaps bottom 38
 
 {% include theme_dir + "i3" %}
