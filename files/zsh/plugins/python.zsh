@@ -7,20 +7,20 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 # allow square brackets without quotes in pip commands
 alias pip="noglob pip"
 
-function cd() {
-  builtin cd "$@" || return 1
-
+function chpwd() {
   if [[ -n "$VIRTUAL_ENV" ]] ; then
-    project_name="$(basename "$VIRTUAL_ENV")"
-    if [[ "$PWD" != *"$project_name"* ]] ; then
+    venv_path=${VIRTUAL_ENV#$HOME/.venvs/}
+    if [[ "$PWD" != "$HOME/$venv_path"* ]] ; then
+      echo "Deactivating venv $VIRTUAL_ENV"
       deactivate
     else
     fi
   fi
 
   if [[ -z "$VIRTUAL_ENV" ]] && [[ $PWD != "/" ]]; then
-      venv_dir="$HOME/.venvs/$(basename $PWD)"
-      if [[ -d "$venv_dir" ]] ; then
+      venv_dir=${PWD/$HOME/$HOME/.venvs}
+      if [[ -d "$venv_dir/bin" ]] ; then
+        echo "Activating venv $venv_dir"
         source "$venv_dir/bin/activate"
       fi
   fi
@@ -31,7 +31,8 @@ function revenv() {
     deactivate || return 1
   fi
 
-  venv_dir="$HOME/.venvs/$(basename $PWD)"
+  venv_dir=${PWD/$HOME/$HOME/.venvs}
+  echo "Creating venv in $venv_dir"
 
   if [[ -d "$venv_dir" ]]; then
     rm -rf "$venv_dir" || return 1

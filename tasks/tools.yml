@@ -39,6 +39,9 @@
     - docker
     - pgcli
     - fd
+    - terraform
+    - certbot
+    - z
 
 - name: Add primary user to docker group
   user:

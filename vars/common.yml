@@ -8,4 +8,24 @@ theme: nameme
 theme_font: Noto Sans
 theme_dir: "files/theme/{{ theme }}/"
 
+# UI layout settings (TODO: read from theme directory)
+screen_width: 3840
+window_gap: 30
+screen_gap: 10
+window_corner_radius: 20
+bar_position_top: true
+bar_height: 64
+colors:
+  background: "#1d2021"
+  foreground: "#d5c4a1"
+  red: "#fb4934"
+  green: "#b8bb26"
+  yellow: "#fabd2f"
+  blue: "#83a598"
+  magenta: "#d3869b"
+  cyan: "#8ec07c"
+  white: "#d5c4a1"
+  bright_black: "#665c54"
+  bright_white: "#fbf1c7"
+
 dpi: 75

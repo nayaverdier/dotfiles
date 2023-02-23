@@ -14,7 +14,6 @@
     packages:
     - light-git
     - polybar
-    - i3lock-fancy-git
 
 - name: Copy wallpaper
   copy:
@@ -47,7 +46,7 @@
     mode: 0755
 
 - name: Configure picom
-  copy:
+  template:
     src: files/picom.conf
     dest: "/home/{{ username }}/.config/picom/picom.conf"
     owner: "{{ username }}"

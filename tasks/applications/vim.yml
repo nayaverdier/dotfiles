@@ -4,6 +4,11 @@
     - neovim
     - python-pynvim
 
+- name: Install terraform language server
+  aur:
+    packages:
+    - terraform-ls
+
 - name: Create neovim config directory
   directory:
     path: "/home/{{ username }}/.config/nvim"

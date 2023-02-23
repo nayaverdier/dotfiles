@@ -8,7 +8,7 @@ primary=$(xrandr | grep primary | cut -d " " -f1)
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
     if [ "$m" = "$primary" ]; then
-        TRAY="right"
+        TRAY="center"
     else
         TRAY="none"
     fi

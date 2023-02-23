@@ -9,8 +9,8 @@ set $mod Mod4
 # startup commands
 exec_always --no-startup-id "killall picom; picom -b --config ~/.config/picom/picom.conf"
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id "killall flameshot; flameshot"
-exec_always --no-startup-id "killall udiskie; udiskie"
+exec_always --no-startup-id "ps -eaf | grep flameshot | grep -v grep || flameshot"
+exec_always --no-startup-id "ps -eaf | grep udiskie | grep -v grep || udiskie"
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id setbg
@@ -25,9 +25,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id volume down
 bindsym XF86AudioMute exec --no-startup-id volume mute
 
 # media controller
-bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec --no-startup-id playerctl -p playerctld next
+bindsym XF86AudioPrev exec --no-startup-id playerctl -p playerctld previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl -p playerctld play-pause
 
 # notifications
 bindsym $mod+Shift+m exec dunstctl close-all
@@ -77,14 +77,12 @@ mode resize {
 }
 bindsym $mod+r mode resize
 
-set $lock /usr/bin/i3lock-fancy
-set $system "Reload i3 (c)onfig, System (l)ock, (e)xit i3, (s)leep, (h)ibernate, (r)eboot, (S)hutdown"
+set $system "Reload i3 (c)onfig, (e)xit i3, (s)leep, (h)ibernate, (r)eboot, (S)hutdown"
 mode $system {
   bindsym c restart; mode default
-  bindsym l exec --no-startup-id $lock; mode default
   bindsym e exit; mode default
-  bindsym s exec --no-startup-id "$lock && systemctl suspend"; mode default
-  bindsym h exec --no-startup-id "$lock && systemctl hibernate"; mode default
+  bindsym s exec --no-startup-id "systemctl suspend"; mode default
+  bindsym h exec --no-startup-id "systemctl hibernate"; mode default
   bindsym r exec systemctl reboot; mode default
   bindsym Shift+s exec systemctl poweroff; mode default
 
@@ -97,8 +95,9 @@ bindsym $mod+Escape mode $system
 for_window [class=".*"] border pixel 0
 
 font pango: {{ theme_font }} 11
-gaps inner 10
-gaps outer 0
-gaps bottom {{ 64 - 20 }}
+gaps inner {{ window_gap // 2 }}
+gaps outer {{ screen_gap // 2 }}
+# Note: dividing by 2 here because height in polybar is doubled relative to i3
+gaps {{ 'top' if bar_position_top else 'bottom' }} {{ (bar_height + window_gap + screen_gap) // 2 }}
 
 {% include theme_dir + "i3" %}

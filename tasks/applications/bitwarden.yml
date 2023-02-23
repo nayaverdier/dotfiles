@@ -1,5 +1,4 @@
 - name: Install bitwarden
   pacman:
     packages:
-    - bitwarden
     - bitwarden-cli

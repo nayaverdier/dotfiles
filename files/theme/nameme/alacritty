@@ -1,30 +1,33 @@
 colors:
   primary:
-    background: '0x181818'
-    foreground: '0xd8d8d8'
-  cursor:
-    text: '0x181818'
-    cursor: '0xd8d8d8'
-  normal:
-    black:   '0x181818'
-    red:     '0xab4642'
-    green:   '0xa1b56c'
-    yellow:  '0xf7ca88'
-    blue:    '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan:    '0x86c1b9'
-    white:   '0xd8d8d8'
-  bright:
-    black:   '0x585858'
-    red:     '0xdc9656'
-    green:   '0x282828'
-    yellow:  '0x383838'
-    blue:    '0xb8b8b8'
-    magenta: '0xe8e8e8'
-    cyan:    '0xa16946'
-    white:   '0xf8f8f8'
+    background: '{{ colors.background }}'
+    foreground: '{{ colors.foreground }}'
 
-draw_bold_text_with_bright_colors: false
+  cursor:
+    text: '{{ colors.background }}'
+    cursor: '{{ colors.foreground }}'
+
+  normal:
+    black:   '{{ colors.background }}'
+    red:     '{{ colors.red }}'
+    green:   '{{ colors.green }}'
+    yellow:  '{{ colors.yellow }}'
+    blue:    '{{ colors.blue }}'
+    magenta: '{{ colors.magenta }}'
+    cyan:    '{{ colors.cyan }}'
+    white:   '{{ colors.white }}'
+
+  bright:
+    black:   '{{ colors.bright_black }}'
+    red:     '{{ colors.red }}'
+    green:   '{{ colors.green }}'
+    yellow:  '{{ colors.yellow }}'
+    blue:    '{{ colors.blue }}'
+    magenta: '{{ colors.magenta }}'
+    cyan:    '{{ colors.cyan }}'
+    white:   '{{ colors.bright_white }}'
+
+custom_cursor_colors: true
 
 font:
   bold:
@@ -34,8 +37,3 @@ font:
   italic:
     family: monospace
   size: 11
-
-window:
-  padding:
-    x: 5
-    y: 5

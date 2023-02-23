@@ -9,6 +9,7 @@
     gpgsign = true
 [push]
     default = current
+    autoSetupRemote = true
 [gpg]
     program = gpg2
 [credential]
