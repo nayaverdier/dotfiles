@@ -6,12 +6,16 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 0.5; done
 
 primary=$(xrandr | grep primary | cut -d " " -f1)
 
-for m in $(polybar --list-monitors | cut -d":" -f1); do
-    if [ "$m" = "$primary" ]; then
+while read monitor_line; do
+    monitor=$(echo $monitor_line | cut -d":" -f1)
+    width=$(echo $monitor_line | cut -d" " -f2 | cut -d"x" -f1)
+    width=$(( width - {{ window_gap * 2 + screen_gap * 2 }} ))
+
+    if [ "$monitor" = "$primary" ]; then
         TRAY="center"
     else
         TRAY="none"
     fi
 
-    MONITOR=$m TRAY=$TRAY polybar main &
-done
+    MONITOR=$monitor WIDTH=$width TRAY=$TRAY polybar main &
+done <<<$(polybar --list-monitors)

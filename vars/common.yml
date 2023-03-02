@@ -9,7 +9,6 @@ theme_font: Noto Sans
 theme_dir: "files/theme/{{ theme }}/"
 
 # UI layout settings (TODO: read from theme directory)
-screen_width: 3840
 window_gap: 30
 screen_gap: 10
 window_corner_radius: 20

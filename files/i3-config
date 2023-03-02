@@ -7,7 +7,7 @@ set $mod Mod4
 {% endif %}
 
 # startup commands
-exec_always --no-startup-id "killall picom; picom -b --config ~/.config/picom/picom.conf"
+# exec_always --no-startup-id "killall picom; picom -b --config ~/.config/picom/picom.conf"
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id "ps -eaf | grep flameshot | grep -v grep || flameshot"
 exec_always --no-startup-id "ps -eaf | grep udiskie | grep -v grep || udiskie"
