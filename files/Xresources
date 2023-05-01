@@ -1,2 +1,3 @@
 Xft.dpi: {{ dpi }}
 *.dpi: {{ dpi }}
+Xcursor.size: 40

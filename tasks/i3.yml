@@ -2,7 +2,6 @@
   pacman:
     packages:
     - i3-wm
-    - picom
     - autorandr
     - xautolock
     - noto-fonts
@@ -14,6 +13,7 @@
     packages:
     - light-git
     - polybar
+    - picom-git
 
 - name: Copy wallpaper
   copy:

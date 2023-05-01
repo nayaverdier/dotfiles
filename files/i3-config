@@ -7,13 +7,14 @@ set $mod Mod4
 {% endif %}
 
 # startup commands
-# exec_always --no-startup-id "killall picom; picom -b --config ~/.config/picom/picom.conf"
+exec_always --no-startup-id "killall picom; picom -b --config ~/.config/picom/picom.conf"
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id "ps -eaf | grep flameshot | grep -v grep || flameshot"
 exec_always --no-startup-id "ps -eaf | grep udiskie | grep -v grep || udiskie"
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id setbg
+exec_always --no-startup-id setxkbmap -option compose:rctrl
 
 # display brightness
 bindsym XF86MonBrightnessDown exec light -U 5

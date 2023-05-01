@@ -35,6 +35,12 @@
     packages: xf86-video-intel
   when: model == "dell-xps-7590"
 
+- name: Install desktop graphics packages
+  pacman:
+    packages:
+    - mesa
+  when: model == "desktop"
+
 - name: Copy xorg configuration
   copy:
     src: files/xorg

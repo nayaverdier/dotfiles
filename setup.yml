@@ -1,17 +1,14 @@
-- hosts: localhost
-  connection: local
-
-  vars_files:
+vars_files:
   - vars/common.yml
   - "vars/{{ install_model | default('virtualbox', True) }}.yml"
 
-  vars_prompt:
+vars_prompt:
   - name: login_password
     prompt: Enter a password for your user
     private: yes
     confirm: yes
 
-  tasks:
+tasks:
   - include: tasks/debug.yml
     tags: [system, debug]
 
@@ -88,3 +85,20 @@
   - include: "{{ item }}"
     tags: [application, "{{ item | filename }}"]
     with_fileglob: "tasks/applications/*"
+
+pacman_bootstrapped_packages:
+  # core arch
+  - linux
+  - linux-firmware
+  - base
+  - base-devel
+  # boot
+  - efibootmgr
+  - grub
+  # wifi
+  - dhcpcd
+  - dialog
+  - iwd
+  - wpa_supplicant
+  #
+  - instater

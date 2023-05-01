@@ -42,7 +42,15 @@ function revenv() {
   . "$venv_dir/bin/activate" || return 1
 
   pip install --upgrade pip
-  pip install -e ".[dev]" || return 1
+  if [[ -f "requirements-dev.txt" ]]; then
+    pip install -r requirements-dev.txt --no-deps || return 1
+    pip install -e . --no-deps || return 1
+  elif [[ -f "requirements.txt" ]]; then
+    pip install -r requirements.txt --no-deps || return 1
+    pip install -e . --no-deps || return 1
+  else
+    pip install -e ".[dev]" || return 1
+  fi
 }
 
 function chal() {

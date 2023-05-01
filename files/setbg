@@ -10,4 +10,5 @@ case "$(file --mime-type -b "$true_location")" in
 	*) notify-send "Error" "Not a valid image." ; exit 1;;
 esac
 
-feh --bg-fill --no-fehbg --no-xinerama "$link_location"
+# feh --bg-fill --no-fehbg --no-xinerama "$link_location"
+feh --bg-fill --no-fehbg "$link_location"
