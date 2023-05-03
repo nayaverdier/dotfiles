@@ -1,6 +1,6 @@
 if [[ -v PROFILE_ZSH_STARTUP ]]; then zmodload zsh/zprof; fi
 
-for file in $(find ~/.zsh/plugins -name "*.zsh"); do
+for file in $(find ~/.zsh/plugins -name "*.zsh" | sort); do
   . "$file"
 done
 

@@ -9,11 +9,12 @@ theme_font: Noto Sans
 theme_dir: "files/theme/{{ theme }}/"
 
 # UI layout settings (TODO: read from theme directory)
+dpi_scale: "{{ dpi // 96 }}"
 window_gap: 30
 screen_gap: 10
-window_corner_radius: 20
+window_corner_radius: "{{ 10 * dpi_scale }}"
 bar_position_top: true
-bar_height: 64
+bar_height: "{{ 32 * dpi_scale }}"
 colors:
   background: "#1d2021"
   foreground: "#d5c4a1"
@@ -26,5 +27,3 @@ colors:
   white: "#d5c4a1"
   bright_black: "#665c54"
   bright_white: "#fbf1c7"
-
-dpi: 75

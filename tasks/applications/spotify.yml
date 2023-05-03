@@ -3,6 +3,6 @@
     packages: spotify
 
 - name: Scale spotify
-  copy:
+  template:
     src: files/spotify.desktop
     dest: /home/{{ username }}/.local/share/applications/spotify.desktop

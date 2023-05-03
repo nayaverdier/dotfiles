@@ -9,7 +9,7 @@ primary=$(xrandr | grep primary | cut -d " " -f1)
 while read monitor_line; do
     monitor=$(echo $monitor_line | cut -d":" -f1)
     width=$(echo $monitor_line | cut -d" " -f2 | cut -d"x" -f1)
-    width=$(( width - {{ window_gap * 2 + screen_gap * 2 }} ))
+    width=$(( width - {{ (window_gap + screen_gap) * dpi_scale }} ))
 
     if [ "$monitor" = "$primary" ]; then
         TRAY="center"

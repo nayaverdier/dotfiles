@@ -98,7 +98,7 @@ for_window [class=".*"] border pixel 0
 font pango: {{ theme_font }} 11
 gaps inner {{ window_gap // 2 }}
 gaps outer {{ screen_gap // 2 }}
-# Note: dividing by 2 here because height in polybar is doubled relative to i3
-gaps {{ 'top' if bar_position_top else 'bottom' }} {{ (bar_height + window_gap + screen_gap) // 2 }}
+# Note: for HiDPI, height in polybar is doubled relative to i3, so bar_height needs to be divided by dpi_scale
+gaps {{ 'top' if bar_position_top else 'bottom' }} {{ bar_height // dpi_scale + (window_gap + screen_gap) // 2 }}
 
 {% include theme_dir + "i3" %}
