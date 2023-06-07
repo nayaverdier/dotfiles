@@ -27,8 +27,8 @@ tasks:
     tags: [system, host]
   - include: tasks/sudo.yml
     tags: [system, sudo]
-  - include: tasks/powertop.yml
-    tags: [system, powertop]
+  # - include: tasks/powertop.yml
+  #   tags: [system, powertop]
   - include: tasks/udiskie.yml
     tags: [system, udiskie]
 

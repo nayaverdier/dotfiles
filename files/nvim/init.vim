@@ -157,6 +157,10 @@ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\
 set splitright
 set splitbelow
 
+" Without this, vim-rooter prints out `cwd: .` in git fugitive buffers after
+" everything, hiding all actual output
+let g:rooter_buftypes = ['']
+
 
 "" Autocompletion
 

@@ -1,3 +1,0 @@
-- name: Install steam
-  pacman:
-    packages: steam

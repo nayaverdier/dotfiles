@@ -1,3 +1,0 @@
-- name: Install Firefox
-  pacman:
-    packages: firefox

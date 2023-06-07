@@ -11,9 +11,13 @@
 - name: Install window manager extras (AUR)
   aur:
     packages:
-    - light-git
     - polybar
     - picom-git
+
+- name: Install backlight controller
+  aur:
+    packages: light-git
+  when: model == "dell-xps-7590"
 
 - name: Copy wallpaper
   copy:
