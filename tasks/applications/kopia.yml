@@ -1,0 +1,3 @@
+- name: Install Kopia (backup tool)
+  aur:
+    packages: kopia-ui-bin

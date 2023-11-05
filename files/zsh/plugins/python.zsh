@@ -55,11 +55,11 @@ function revenv() {
 
 function chal() {
   port=${1:-8000}
-  pushd $(dirname `find $original -type d -name ".chalice"`)
+  pushd $(dirname `find . -type d -name ".chalice"`)
   chalice local --host 0.0.0.0 --port "$port"
   popd
 }
 
 function pyv() {
-    pip install --use-deprecated=legacy-resolver "$1==" 2>&1 | grep -oP "(?<=from versions: ).*(?=\))"
+    pip install --use-deprecated=legacy-resolver --break-system-packages "$1==" 2>&1 | grep -oP "(?<=from versions: ).*(?=\))"
 }

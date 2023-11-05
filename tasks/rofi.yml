@@ -3,6 +3,7 @@
     packages:
     - rofi
     - rofi-calc
+    - gnuplot
     - papirus-icon-theme
 
 - name: Install rofi emoji

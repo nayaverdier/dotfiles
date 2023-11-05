@@ -1,0 +1,3 @@
+- name: Install qBittorrent
+  pacman:
+    packages: qbittorrent

@@ -1,7 +1,7 @@
 """ Plugins
 
 " Auto install all desired COC extensions / language servers
-let g:coc_global_extensions = ['coc-pyright', 'coc-rls', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-flutter', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint']
+let g:coc_global_extensions = ['coc-pyright', 'coc-rust-analyzer', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-prettier', 'coc-flutter', 'coc-yaml', 'coc-markdownlint', 'coc-json', 'coc-cfn-lint']
 
 call plug#begin()
 
@@ -47,6 +47,9 @@ Plug 'junegunn/fzf.vim'
 
 " Code Completion / language server integration
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() } }
+
+" Python pytest running and debugging
+Plug 'alfredodeza/pytest.vim'
 
 " language syntax highlighting and indentation support
 Plug 'sheerun/vim-polyglot'
