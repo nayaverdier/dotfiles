@@ -11,8 +11,8 @@
 
 - name: Copy alacritty config
   template:
-    src: files/alacritty.yml
-    dest: "/home/{{ username }}/.config/alacritty/alacritty.yml"
+    src: files/alacritty.toml
+    dest: "/home/{{ username }}/.config/alacritty/alacritty.toml"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644

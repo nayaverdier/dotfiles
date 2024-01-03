@@ -1,39 +1,39 @@
-colors:
-  primary:
-    background: '{{ colors.background }}'
-    foreground: '{{ colors.foreground }}'
+[colors.bright]
+black = "{{ colors.bright_black }}"
+blue = "{{ colors.blue }}"
+cyan = "{{ colors.cyan }}"
+green = "{{ colors.green }}"
+magenta = "{{ colors.magenta }}"
+red = "{{ colors.red }}"
+white = "{{ colors.bright_white }}"
+yellow = "{{ colors.yellow }}"
 
-  cursor:
-    text: '{{ colors.background }}'
-    cursor: '{{ colors.foreground }}'
+[colors.cursor]
+cursor = "{{ colors.foreground }}"
+text = "{{ colors.background }}"
 
-  normal:
-    black:   '{{ colors.background }}'
-    red:     '{{ colors.red }}'
-    green:   '{{ colors.green }}'
-    yellow:  '{{ colors.yellow }}'
-    blue:    '{{ colors.blue }}'
-    magenta: '{{ colors.magenta }}'
-    cyan:    '{{ colors.cyan }}'
-    white:   '{{ colors.white }}'
+[colors.normal]
+black = "{{ colors.background }}"
+blue = "{{ colors.blue }}"
+cyan = "{{ colors.cyan }}"
+green = "{{ colors.green }}"
+magenta = "{{ colors.magenta }}"
+red = "{{ colors.red }}"
+white = "{{ colors.white }}"
+yellow = "{{ colors.yellow }}"
 
-  bright:
-    black:   '{{ colors.bright_black }}'
-    red:     '{{ colors.red }}'
-    green:   '{{ colors.green }}'
-    yellow:  '{{ colors.yellow }}'
-    blue:    '{{ colors.blue }}'
-    magenta: '{{ colors.magenta }}'
-    cyan:    '{{ colors.cyan }}'
-    white:   '{{ colors.bright_white }}'
+[colors.primary]
+background = "{{ colors.background }}"
+foreground = "{{ colors.foreground }}"
 
-custom_cursor_colors: true
+[font]
+size = 11
 
-font:
-  bold:
-    family: monospace
-  normal:
-    family: monospace
-  italic:
-    family: monospace
-  size: 11
+[font.bold]
+family = "monospace"
+
+[font.italic]
+family = "monospace"
+
+[font.normal]
+family = "monospace"
