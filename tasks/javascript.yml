@@ -1,7 +1,7 @@
 - name: Install node.js, NPM, and yarn
   pacman:
     packages:
-    - nodejs-lts-gallium
+    - nodejs-lts-hydrogen
     - npm
     - yarn
 
