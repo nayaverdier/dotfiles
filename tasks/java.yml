@@ -1,5 +1,4 @@
 - name: Install java
   pacman:
     packages:
-    - jre-openjdk
     - jdk-openjdk
