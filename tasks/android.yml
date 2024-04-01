@@ -1,8 +1,7 @@
-# - name: Install flutter and android-studio
-#   aur:
-#     packages:
-#     - flutter
-#     - android-studio
+- name: Install android-studio
+  aur:
+    packages:
+    - android-studio
 
 - name: Install android-tools
   pacman:

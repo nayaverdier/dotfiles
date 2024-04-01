@@ -43,7 +43,7 @@ bindsym $mod+e exec rofi -show emoji
 
 # programs
 bindsym $mod+Return exec --no-startup-id alacritty
-bindsym $mod+Print exec --no-startup-id flameshot gui
+bindsym $mod+Shift+p exec --no-startup-id flameshot gui
 
 # general
 bindsym $mod+q kill
@@ -52,17 +52,17 @@ bindsym $mod+x floating toggle
 bindsym $mod+a focus mode_toggle
 bindsym $mod+m move workspace to output right
 bindsym $mod+Shift+s sticky toggle
+bindsym $mod+v splitv
+bindsym $mod+h splith
 
 floating_modifier $mod
 
-{% for (direction, vim) in [("up", "k"), ("down", "j"), ("left", "h"), ("right", "l")] %}
-bindsym $mod+{{ vim }} focus {{ direction }}
+{%- for direction in ["up", "down", "left", "right"] %}
 bindsym $mod+{{ direction|capitalize }} focus {{ direction }}
-bindsym $mod+Shift+{{ vim }} move {{ direction }}
 bindsym $mod+Shift+{{ direction|capitalize }} move {{ direction }}
 {% endfor %}
 
-{% for i in range(1, 11) %}
+{%- for i in range(1, 11) %}
 bindsym $mod+{{ i % 10 }} workspace number {{ i }}
 bindsym $mod+Shift+{{ i % 10 }} move container to workspace number {{ i }}
 {% endfor %}

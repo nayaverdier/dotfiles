@@ -102,8 +102,11 @@ Installation Guide for my specific use case.
       The timeout settings prevent the GRUB menu from ever appearing, and just
       immediately booting into Arch. This may not be what you want.
     - `grub-mkconfig -o /boot/grub/grub.cfg` to configure GRUB
-14. `exit` to go back to the live ISO
-15. `umount -R /mnt` to unmount the arch installation
-16. `reboot now` to reboot, hopefully into your real arch installation
-17. You should be able to unplug the Arch USB now. See the [README](README.md)
+14. Add the resume hook to mkinitcpio
+    - Update `/etc/mkinitcpio.conf`, add `resume` hook after the `filesystems` hook
+    - `mkinitcpio -P` to actually add the hook to initramfs
+15. `exit` to go back to the live ISO
+16. `umount -R /mnt` to unmount the arch installation
+17. `reboot now` to reboot, hopefully into your real arch installation
+18. You should be able to unplug the Arch USB now. See the [README](README.md)
     to fully configure the user space
